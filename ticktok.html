@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <title>自动替换地址</title>
+    <style>
+        /* 简单的样式调整 */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f5f5f5;
+        }
+        input {
+            width: 70%;
+            height: 50px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            height: 50px;
+            margin-left: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+            background-color: #4CAF50;
+            color: white;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<input id="url" placeholder="请输入URL参数">
+<button onclick="handleJump()">跳转</button>
+
+<script>
+    function handleJump() {
+        var urlInput = document.getElementById('url').value;
+        if (urlInput) {
+            window.location.href = urlInput.replace('playwm', 'play');
+        } else {
+            alert("请输入有效的URL");
+        }
+    }
+
+    // 禁用双指放大
+    document.documentElement.addEventListener('touchstart', function (event) {
+        if (event.touches.length > 1) {
+            event.preventDefault();
+        }
+    }, {passive: false});
+
+    // 禁用双击放大
+    var lastTouchEnd = 0;
+    document.documentElement.addEventListener('touchend', function (event) {
+        var now = Date.now();
+        if (now - lastTouchEnd <= 300) {
+            event.preventDefault();
+        }
+        lastTouchEnd = now;
+    }, {passive: false});
+</script>
+
+</body>
+</html>
